@@ -32,9 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnDragListen
         binding.recycler.setLayoutManager(new GridLayoutManager(this, 3));
         binding.recyclerSide.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerSide.addItemDecoration(new DividerItemDecoration(this, 1));
-        binding.recycler.addItemDecoration(new DividerGridItemDecoration(
-                1,
-                3,
+        binding.recycler.addItemDecoration(new DividerGridItemDecoration(1, 3,
                 getResources().getColor(R.color.colorPrimary)));
 
         mLists = getData();
@@ -51,11 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnDragListen
                 String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
                 ClipData data = new ClipData(v.getTag().toString(), mimeTypes, item);
 
-                v.startDrag(
-                        data,
-                        shadowBuilder,
-                        null,
-                        0);
+                v.startDrag(data, shadowBuilder, null, 0);
 
             }
         });
