@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -16,9 +17,10 @@ import com.cjj.onestep.databinding.ActivityMainBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnDragListener{
+public class MainActivity extends AppCompatActivity implements View.OnDragListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+
     private List<OneStepEntity> mLists;
 
     @Override
@@ -44,9 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnDragListen
             public void onItemLongClick(View v, OneStepEntity entity) {
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
 
-                ClipData.Item item = new ClipData.Item((CharSequence)v.getTag());
+                ClipData.Item item = new ClipData.Item((CharSequence) v.getTag());
 
-                String[] mimeTypes = { ClipDescription.MIMETYPE_TEXT_PLAIN };
+                String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
                 ClipData data = new ClipData(v.getTag().toString(), mimeTypes, item);
 
                 v.startDrag(
@@ -110,21 +112,29 @@ public class MainActivity extends AppCompatActivity implements View.OnDragListen
     public boolean onDrag(View view, DragEvent dragEvent) {
         switch (dragEvent.getAction()) {
             case DragEvent.ACTION_DRAG_STARTED:
-                break;
-            case DragEvent.ACTION_DRAG_ENTERED:
-                break;
-            case DragEvent.ACTION_DRAG_EXITED:
+                Log.i(TAG, "ACTION_DRAG_STARTED");
                 break;
 
+            case DragEvent.ACTION_DRAG_ENTERED:
+                Log.i(TAG, "ACTION_DRAG_ENTERED");
+                break;
+
+            case DragEvent.ACTION_DRAG_EXITED:
+                Log.i(TAG, "ACTION_DRAG_EXITED");
+                break;
+
+
             case DragEvent.ACTION_DROP:
+                Log.i(TAG, "ACTION_DROP");
                 ClipData.Item item = dragEvent.getClipData().getItemAt(0);
                 CharSequence dragData = item.getText();
 
-                Toast.makeText(MainActivity.this,"你要分享"+dragData,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "你要分享" + dragData, Toast.LENGTH_SHORT).show();
 
                 break;
 
             case DragEvent.ACTION_DRAG_ENDED:
+                Log.i(TAG, "ACTION_DRAG_ENDED");
                 break;
 
             default:

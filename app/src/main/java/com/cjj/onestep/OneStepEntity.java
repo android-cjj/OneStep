@@ -9,7 +9,7 @@ public class OneStepEntity {
     public String title;
     public String icon;
 
-    public OneStepEntity(String title, String icon){
+    public OneStepEntity(String title, String icon) {
         this.title = title;
         this.icon = icon;
     }
